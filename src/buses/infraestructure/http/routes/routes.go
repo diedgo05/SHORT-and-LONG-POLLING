@@ -16,7 +16,7 @@ func Routes(router *gin.Engine) {
 	deleteBus := dependencies.DeleteBusController()
 
 	routes.POST("/", addBus.Run)
-	routes.GET("/", getAllBus.Run)
+	routes.GET("", getAllBus.Run)
 	routes.PUT("/:idBus", updateBus.Run)
 	routes.GET("/:choferID", getBusByIdChofer.Run)
 	routes.DELETE("/:idBus", deleteBus.Run)

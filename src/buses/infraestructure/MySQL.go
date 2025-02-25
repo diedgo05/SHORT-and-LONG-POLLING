@@ -44,7 +44,7 @@ func (mysql *MySQL) FindAllBuses() ([]domain.Buses, error) {
 		}
 		buses = append(buses, bus)
 	}
-	fmt.Println("Choferes encontrados correctamente")
+	fmt.Println("Buses encontrados correctamente")
 	return buses, nil
 }
 
