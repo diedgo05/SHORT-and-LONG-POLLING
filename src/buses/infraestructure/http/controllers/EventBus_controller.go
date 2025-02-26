@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"polling/src/buses/application"
 	"time"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -24,6 +23,7 @@ func (ctrl *EventBusController) ShortPolling(c *gin.Context) {
 		c.JSON(http.StatusOK, bus)
 	}
 }
+
 
 func (ctrl *EventBusController) LongPolling(c *gin.Context) {
 	timeout := time.After(30 * time.Second)
