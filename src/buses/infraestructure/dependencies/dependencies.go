@@ -48,3 +48,9 @@ func DeleteBusController() *controllers.DeleteBusByIDController {
 
 	return controllers.NewDeleteBusByIDController(ucDeleteBus)
 }
+
+func PollingBusController() *controllers.EventBusController {
+	ucEventBus := application.NewEventBusUseCase(&mySQL)
+
+	return controllers.NewEventBusController(ucEventBus)
+}
