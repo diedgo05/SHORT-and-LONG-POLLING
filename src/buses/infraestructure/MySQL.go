@@ -36,6 +36,7 @@ func (mysql *MySQL) FindAllBuses() ([]domain.Buses, error) {
 
 	defer rows.Close()
 	var buses []domain.Buses
+	found := false
 	for rows.Next() {
 		var bus domain.Buses
 		err := rows.Scan(&bus.IdBus, &bus.Placa, &bus.Capacidad, &bus.ChoferID)
@@ -43,8 +44,13 @@ func (mysql *MySQL) FindAllBuses() ([]domain.Buses, error) {
 			return nil, err
 		}
 		buses = append(buses, bus)
+		found = true
 	}
-	fmt.Println("Choferes encontrados correctamente")
+	if found {
+		fmt.Println("Buses encontrados correctamente")
+	} else {
+		fmt.Println("No se encontraron buses en la base de datos")
+	}
 	return buses, nil
 }
 

@@ -46,3 +46,9 @@ func DeleteChoferController() *controllers.DeleteByIDChoferController {
 
 	return controllers.NewDeleteByIDChoferController(ucDeleteChofer)
 }
+
+func PollingController() *controllers.EventChoferController {
+	ucEventChofer := application.NewEventChoferUseCase(&mySQL)
+
+	return controllers.NewEventChoferController(ucEventChofer)
+}

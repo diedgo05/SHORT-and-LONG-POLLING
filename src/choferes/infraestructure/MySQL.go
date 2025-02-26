@@ -29,12 +29,14 @@ func (mysql *MySQL) Save(chofer domain.Chofer) error {
 func (mysql *MySQL) FindAll() ([]domain.Chofer, error) {
 	query := "SELECT * FROM choferes"
 	rows, err := mysql.db.Query(query)
-
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
+
 	var choferes []domain.Chofer
+	found := false 
+
 	for rows.Next() {
 		var chofer domain.Chofer
 		err := rows.Scan(&chofer.ID, &chofer.Nombre, &chofer.Apellido_p, &chofer.Apellido_m, &chofer.Edad)
@@ -42,10 +44,18 @@ func (mysql *MySQL) FindAll() ([]domain.Chofer, error) {
 			return nil, err
 		}
 		choferes = append(choferes, chofer)
+		found = true 
 	}
-	fmt.Println("Choferes encontrados correctamente")
+
+	if found {
+		fmt.Println("Choferes encontrados correctamente")
+	} else {
+		fmt.Println("No se encontraron choferes en la base de datos")
+	}
+
 	return choferes, nil
 }
+
 
 func (mysql *MySQL) UpdateByID(id int, chofer domain.Chofer) error {
 	query := "UPDATE choferes SET nombre = ?, apellido_p = ?, apellido_m = ?, edad = ? WHERE id = ?"

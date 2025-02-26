@@ -20,7 +20,7 @@ func (ctrl *GetAllBusesController) Run(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"status": false,
-			"error":  "Todos los campos son requeridos",
+			"error":"Todos los campos son requeridos",
 		})
 		return
 	}
